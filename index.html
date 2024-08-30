@@ -1,62 +1,76 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Public Parking Spaces in St.Helier Jersey</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-        
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/loaders.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <!-- Add your site or application content here -->
-        <div class="container">
-           <header>
-             <h1>Parking Spaces</h1>
-              <p>Spaces in Multi-Storey Carparks in St.Helier<br/>
-               <span id="timestamp"></span></p>
-           </header>
+    <title>Public Parking Spaces in Jersey</title>
 
-           <section id="poster">
-             <div class="loader">
-                <div data-loader="circle-side"></div>
-            </div>
-           </section>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Parking">
 
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="icon" href="/images/favicon.ico">
 
-           <footer>
-            <p>A <a href="http://www.bearpig.com" target="_blank">bearpig</a> hack for <a href="http://www.hackjsy.com" target="_blank">hackjsy</a>|<a href="http://www.openrock.co" target="_blank">openrock</a><br/> using the data feed from <a href="http://www.gov.je/_layouts/15/C5.Gov.Je.CarParks/proxy.aspx" target="_blank">gov.je</a><br/><br/>
-              <span style="color: #111; font-style:normal;">v1.2</span></p>
-           </footer>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/loaders.css">
+</head>
+
+<body>
+    <div class="glitch-nav">
+        <div class="glitch-nav-title">
+            <p class="glitch-nav-glitch">Glitch.je</p>
         </div>
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <ul class="glitch-nav-items">
+            <li class="glitch-nav-item"><a href="https://data.glitch.je">Open Data</a></li>
+            <li class="glitch-nav-item"><a href="https://qrcode.glitch.je">QR Code</a></li>
+            <li class="glitch-nav-item"><a href="https://cls.glitch.je">CLS Queues</a></li>
+            <li class="glitch-nav-item glitch-nav-item-active"><a href="https://parking.glitch.je">Parking</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <header>
+            <h1 class="title">Parking Spaces</h1>
+            <p class="summary">Spaces in Multi-Storey Carparks in St.Helier</p>
+            <p id="timestamp"></p>
+        </header>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        <section id="poster">
+            <div class="loader">
+                <div data-loader="circle-side"></div>
+            </div>
+        </section>
 
-          ga('create', 'UA-77169533-1', 'auto');
-          ga('send', 'pageview');
+        <footer>
+            <p>Adapted by <a href="https://github.com/lukeeey">Luke</a> from a project by <a
+                    href="https://github.com/bearpig/parking.bearpig.com" target="_blank">bearpig</a></p>
+        </footer>
+    </div>
 
-        </script>
-    </body>
+    <script src="js/main.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        // ga('create', 'UA-77169533-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+
 </html>

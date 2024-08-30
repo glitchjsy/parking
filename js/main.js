@@ -1,101 +1,85 @@
-// this is our (currently) static data on max spaces
-var carParks = new Object();
-carParks['Green Street'] = 608;
-carParks['Minden Place'] = 251;
-carParks['Sand Street'] = 545;
-carParks['Patriotic Street'] = 622;
-carParks['Pier Road'] = 739;
+const posterElement = document.getElementById("poster");
+const timestampElement = document.getElementById("timestamp");
 
-// A $( document ).ready() block.
-$(document).ready(function() 
-{
-    UpdateParkingData();
+const url = "https://proxy.glitch.je/?url=https%3A%2F%2Fsojpublicdata.blob.core.windows.net%2Fsojpublicdata%2Fcarpark-data.json";
 
-    setInterval(function() 
-    {
-      UpdateParkingData();
-    }, 30000);
-});
+// TODO: Remove this when migrating to Glitch Data API
+const carParks = {
+    "Charles Street": 137,
+    "Green Street": 576,
+    "Minden Place": 242,
+    "Sand Street": 551,
+    "Patriotic Street": 625,
+    "Pier Road": 836
+}
 
-var carParkData =[];
+let carParkData = [];
 
-function UpdateParkingData()
-{
-    $('#timestamp').html('Updating, please wait...');
+async function UpdateParkingData() {
+    timestampElement.innerHTML = "Updating, please wait...";
 
-    var url = 'https://parking.openrock.xyz/';
+    try {
+        const response = await fetch(url);
 
-    $.ajax(
-    {
-        url: url,
-        success: function(data) 
-        {
-           RenderTimestamp(data);
+        if (response.ok) {
+            const data = await response.json();
 
-           RenderParkingData(data.carparkData.Jersey.carpark);
+            RenderTimestamp(data);
+            RenderParkingData(data.carparkData.Jersey.carpark);
         }
-    });
+    } catch (e) {
+        alert(e.message);
+    }
 }
 
-function RenderParkingData(data)
-{
-     $('#poster').html('');
-
-     $.each(data, function(index, value) 
-     {
-        RenderCarpark(value);
-     });
+function RenderParkingData(data) {
+    posterElement.innerHTML = "";
+    data.forEach(RenderCarpark);
 }
 
-function RenderCarpark(data)
-{
-    var numbspaces = parseInt(data.spaces);
-    var status = parseInt(data.status);
+function RenderCarpark(data) {
+    let numSpaces = parseInt(data.spaces);
+    let status = parseInt(data.status);
 
-    //set max spaces per carpark
-    totalspaces = carParks[data.name];
+    // Set max spaces per carpark
+    totalSpaces = carParks[data.name];
 
-    // calculate percentages
-    var percentage = (numbspaces / totalspaces) * 100;
+    // Calculate percentages
+    let percentage = (numSpaces / totalSpaces) * 100;
 
-    // work out the status
-    status = 'empty';
-    
-    if(percentage < 75)
-    {
-        status = 'almost-empty';
+    // Work out the status
+    status = "empty";
+
+    if (percentage < 75) {
+        status = "almost-empty";
     }
-    
-    if(percentage < 45)
-    {
-        status = 'half-full';
+    if (percentage < 45) {
+        status = "half-full";
     }
-    
-    if(percentage < 15)
-    {
-        status = 'almost-full';
+    if (percentage < 15) {
+        status = "almost-full";
     }
-    
-    if(percentage == 0)
-    {
-        status = 'full';
+    if (percentage == 0) {
+        status = "full";
     }
 
     // Make HTML
-    var html =  '<div class="carpark ' + status + '">';
-    html=html + '<div class="carpark_name">' + data.name + '</div>';
-    html=html + '<div class="carpark_spaces">' + numbspaces + '<span> spaces</span></div>';
-    html=html + '</div>';
+    let html = `<div class="carpark ${status}">`;
+    html = html + `<div class="carpark_name">${data.name}</div>`;
+    html = html + `<div class="carpark_spaces">${numSpaces}<span> spaces</span></div>`;
+    html = html + `</div>`;
 
-    $('#poster').append(html);
+    posterElement.insertAdjacentHTML("beforeend", html);
 }
 
-function RenderTimestamp(data)
-{
-<<<<<<< HEAD
-   $('#timestamp').html(data.carparkData.Timestamp);
+function RenderTimestamp(data) {
+    timestampElement.innerHTML = data.carparkData.Timestamp;
 }
-=======
-  $('#timestamp').html(data.carparkData.Timestamp);
-}
->>>>>>> 4e844f8b836c5b8bc4b6693a14513d7213936f0e
+
+(function () {
+    UpdateParkingData();
+
+    setInterval(function () {
+        UpdateParkingData();
+    }, 5000);
+})();
