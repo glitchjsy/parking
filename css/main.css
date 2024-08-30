@@ -136,15 +136,24 @@ footer {
     float: left;
     display: block;
     padding: 0 25px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    width: 100%;
 }
 
 footer p {
-    padding-top: 20px;
     text-align: left;
     font-size: 1rem;
 }
 
 footer a {
+    font-size: 1rem;
     color: #1ec9bd;
     text-decoration: none;
 }
@@ -165,7 +174,13 @@ footer a {
         font-size: 0.8rem;
     }
 
-    footer p {
+    .footer-container {
+        justify-content: flex-start;
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+    footer p, footer a {
         text-align: center;
         font-size: 0.8rem;
     }
